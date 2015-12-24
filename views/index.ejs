@@ -1,0 +1,68 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Transitions</title>
+        
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <script type="text/javascript" src="jquery-1.11.3.min.js"></script>  
+        <script type="text/javascript" src="main.js"></script>
+    </head>
+
+    <body>
+        <div id="container">
+            <div id="left" >
+                   <%
+                      var rowNum = 0;
+                      for(var i = 0; i < 9; i++) {
+                      if(i%3 == 0) {
+                          if(i != 0) {
+                          %>
+                          </div>
+                          <%}%>
+                          <div class="row_<%=rowNum%>">
+                                <div class="col-<%=i%> img-div flipper">
+                                     
+                                     <div class="front">
+                                        <img src="index<%=i%>.jpeg"></img>
+                                    </div>
+                                    <div class="back">
+                                        <img src="index<%=i%>.jpeg"></img>
+                                    </div> 
+                                </div>
+                      <%
+                        rowNum++;
+                      } else {%>
+                        <div class="col-<%=i%> img-div flipper"> 
+                             
+                              <div class="front">
+                                <img src="index<%=i%>.jpeg"></img>
+                            </div>
+                            <div class="back">
+                                <img src="index<%=i%>.jpeg"></img>
+                            </div>  
+                        </div>  
+                               
+                            <%if(i==8) {%>
+                                </div>
+                             <%}%> 
+                        <%}%> 
+                    <%}%>
+            </div>
+             
+            <div id="right" tabindex="0" class="scrollable">                 
+                  <%
+                    for(var i = 0; i < bios.length; i++) { %>
+                        <section id="section_<%=i%>"> 
+                            <div class="name"><%=bios[i].name%></div>
+                            <div class="jobTitle"><%=bios[i].jobTitle%></div>
+                            <div class="details"><%=bios[i].details%></div>
+                        </section>
+                        
+                  <%  }
+                  %>
+            </div>
+         </div>
+    </body>
+
+</html> 

@@ -1,0 +1,129 @@
+html {
+    background: url(page_background.jpeg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%; 
+    overflow: hidden; 
+}
+
+body {
+    height: 100%; 
+    overflow: hidden; 
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+#container {
+    min-height: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+#left, #right {
+    display: block;
+    height: 100%;
+    width: 50%;
+    
+}
+
+#left {
+    float: left;
+    padding-top: 20px;
+}
+
+#left .row {
+    margin: 0 auto;
+    width: 670px;
+} 
+
+#left .img-div {
+    width: 210px;
+    height: 210px;
+    display: inline-block;
+    background-color: yellow;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+#left .img-div img{
+  width: 210px; 
+  font-size: 20px;   
+}
+
+/***********/
+/* flip the pane when hovered */
+.flipper:hover {
+    transform: rotateY(180deg);
+}
+
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    font-size: 16px;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+     -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+/* back, initially hidden pane */
+.back {
+    transform: rotateY(180deg);
+   
+}
+
+/* END FLIPPER***********/
+
+
+#right {
+    float: right;
+    height: 100%;
+    overflow: auto;
+}
+
+section {
+    height: 100%;
+}
+
+section .name {
+    font-size: 36px;
+    margin-top: 3%;
+}
+
+section .jobTitle {
+    font-size: 24px;
+    color: yellow;
+}
+
+section .description {
+    font-size: 12px;
+    margin-top: 3%;
+}
+
+section .details {
+    color: black;
+    font-weight: bold;
+    border-radius: 25px;
+    background: #ffffff;
+    padding: 9px;
+    opacity: 0.8    
+}

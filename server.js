@@ -4,6 +4,28 @@ var express = require('express');
 var fs      = require('fs');
 
 
+// Define some date for display
+var bios = [];
+
+for(var i = 0; i < 9; i++) {
+	bios.push(
+		{
+			name: "NAME-" + i,
+			jobTitle: "Creative designer " + i,
+			details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+					"Mauris eu tincidunt est, sit amet fringilla nisl. " +
+					"Nam et tristique eros. Vivamus congue pellentesque odio, et cursus elit lobortis vitae. " +
+					"Pellentesque lacus lacus, laoreet eu consectetur a, sodales nec urna. Aliquam in venenatis erat," +
+					" a suscipit arcu. Duis tristique lacinia dolor, nec feugiat tortor rhoncus eu. Praesent massa arcu, " +
+					"lobortis at molestie vitae, eleifend vitae orci. Quisque aliquam, tellus vitae gravida tempor, " +
+					"est elit mollis urna, et condimentum dui enim congue nisl. Pellentesque efficitur odio neque, " +
+					"ut convallis neque ullamcorper sit amet. Sed viverra ligula vitae sodales scelerisque. "
+		}
+	);
+}
+
+
+
 /**
  *  Define the sample application.
  */
@@ -100,10 +122,17 @@ var SampleApp = function() {
             res.send("<html><body><img src='" + link + "'></body></html>");
         };
 
+        /*
         self.routes['/'] = function(req, res) {
             res.setHeader('Content-Type', 'text/html');
             res.send(self.cache_get('index.html') );
+        }; */
+        self.routes['/'] = function(req, res) {
+        	res.render('index', {
+            	bios: bios
+            });
         };
+        
     };
 
 
@@ -114,11 +143,17 @@ var SampleApp = function() {
     self.initializeServer = function() {
         self.createRoutes();
         self.app = express.createServer();
+        
+        self.app.use(express.static(__dirname + '/public'));
+        // set the view engine to ejs
+        self.app.set('view engine', 'ejs');
 
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
             self.app.get(r, self.routes[r]);
         }
+        
+        
     };
 
 
@@ -146,9 +181,7 @@ var SampleApp = function() {
         });
     };
 
-};   /*  Sample Application.  */
-
-
+};  
 
 /**
  *  main():  Main code.
